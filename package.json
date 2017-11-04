@@ -13,7 +13,8 @@
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
-    "prod": "cd build && static-server --port 8080"
+    "prod": "cd build && static-server --port 8080",
+    "postinstall": "replace cmd.version=6.5.1.240 cmd.version=6.5.3 ./node_modules/@extjs/sencha-cmd/dist/sencha.cfg"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.1.1",
@@ -32,6 +33,7 @@
     "open-browser-webpack-plugin": "0.0.5",
     "portfinder": "^1.0.13",
     "rimraf": "^2.6.1",
+    "replace": "^0.3.0",
     "static-server": "^2.0.5",
     "typescript": "^2.4.1",
     "webpack": "^2.5.1",
