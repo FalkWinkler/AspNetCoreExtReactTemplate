@@ -1,11 +1,15 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ExtReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const portfinder = require('portfinder');
 
-const sourcePath = path.join(__dirname, './src');
+const sourcePath = path.join(__dirname, './clientApp');
+const ROOT = path.resolve(__dirname);
 
 module.exports = function (env) {
 
@@ -15,19 +19,38 @@ module.exports = function (env) {
         const nodeEnv = env && env.prod ? 'production' : 'development';
         const isProd = nodeEnv === 'production';
 
+        if(isProd){
+            console.log('@@@@@@@@@ USING PRODUCTION @@@@@@@@@@@@@@@');
+        }
+        else{
+            console.log('@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@');
+        }
+        
+
         const plugins = [
+            new CleanWebpackPlugin(
+                [
+                    './wwwroot/dist',
+                    './wwwroot/assets'
+                ],
+                { root: ROOT }
+            ),
             new ExtReactWebpackPlugin({
                 sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
                 toolkit: 'modern',
-                theme: 'custom-ext-react-theme',
-                overrides: ['./ext-react/overrides'],
+               // theme: 'custom-ext-react-theme',
+               // overrides: ['./clientApp/ext-react/overrides'],
                 packages: [],
-                production: isProd
+                production: isProd,
+                output: "./dist"
             }),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: nodeEnv
             }),
-            new webpack.NamedModulesPlugin()
+            new webpack.NamedModulesPlugin(),
+            new CopyWebpackPlugin([
+                { from: './clientApp/images/*.*', to: 'assets/', flatten: true }
+            ])
         ];
 
         if (isProd) {
@@ -47,26 +70,32 @@ module.exports = function (env) {
             plugins.push(
                 new webpack.HotModuleReplacementPlugin()
             );
-        }
+        }        
 
         plugins.push(new HtmlWebpackPlugin({
             template: 'index.html',
+            inject: 'body',
+            filename: 'index.html',
             hash: true
         }), new OpenBrowserPlugin({
             url: `http://localhost:${port}`
         }));
+
+        
 
         return {
             devtool: isProd ? 'source-map' : 'cheap-module-source-map',
             context: sourcePath,
 
             entry: [
-                './index.tsx'
+             './index.tsx'
             ],
 
             output: {
-                path: path.join(__dirname, 'build'),
-                filename: 'bundle.js',
+                path: ROOT + '/wwwroot/',
+                filename: 'dist/[name].bundle.js',
+                chunkFilename: 'dist/[id].chunk.js',
+                publicPath: '/'
             },
 
             module: {
@@ -110,7 +139,7 @@ module.exports = function (env) {
             },
 
             devServer: {
-                contentBase: './build',
+                contentBase: path.join(ROOT, '/wwwroot/'),
                 historyApiFallback: true,
                 host: '0.0.0.0',
                 disableHostCheck: true,

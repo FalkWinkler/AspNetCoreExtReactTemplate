@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@extjs/reactor": "^1.1.1",
+    "eslint": "^4.10.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -13,7 +14,10 @@
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
-    "prod": "cd build && static-server --port 8080",
+    "webpack-dev": "webpack --env=dev",
+    "webpack-production": "webpack --env=prod",
+    "watch-webpack-dev": "webpack --env=dev --watch --color",
+    "watch-webpack-production": "npm run build-production --watch --color",
     "postinstall": "replace cmd.version=6.5.1.240 cmd.version=6.5.3 ./node_modules/@extjs/sencha-cmd/dist/sencha.cfg"
   },
   "devDependencies": {
@@ -37,6 +41,8 @@
     "static-server": "^2.0.5",
     "typescript": "^2.4.1",
     "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "^2.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.0.1"
   }
 }

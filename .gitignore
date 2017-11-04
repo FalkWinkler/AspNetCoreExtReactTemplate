@@ -3,3 +3,24 @@ build
 node_modules
 /package-lock.json
 /yarn.lock
+
+# Ext React
+# =========================
+
+# AoT compilation files
+aot/
+
+# TypeScript compilation files
+**/clientApp/app/**/*.js
+**/clientApp/app/**/*.map
+**/clientApp/app/*.js
+**/clientApp/app/*.map
+**/clientApp/*.js
+**/clientApp/*.map
+**/clientApp/tests/**/*.js
+**/clientApp/tests/**/*.map
+**/wwwroot/assets
+**/wwwroot/dist
+**/wwwroot/dist/
+**/wwwroot/index.html
+**/wwwroot/

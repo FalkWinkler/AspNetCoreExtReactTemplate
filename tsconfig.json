@@ -11,19 +11,12 @@
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "removeComments": true,
-    "strictNullChecks": false,
-    "outDir": "build/dist",    
+    "strictNullChecks": false,   
     "lib": ["es6","es7" ,"dom"]  
   },
   "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts"
+    "node_modules"   
   ],
-  "compileOnSave": false  
+  "compileOnSave": false,
+  "buildOnSave": false
 }
