@@ -2,10 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ext\**" />
+    <Content Remove="ext\**" />
+    <EmbeddedResource Remove="ext\**" />
+    <None Remove="ext\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="ext" />
+	 <Content Remove="clientApp" />
   </ItemGroup>
 
   <ItemGroup>

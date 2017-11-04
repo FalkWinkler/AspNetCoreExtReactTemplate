@@ -12,13 +12,13 @@
   },
   "scripts": {
     "clean": "rimraf build",
-    "start": "webpack-dev-server --progress --colors",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
+    "start": "webpack-dev-server --progress --colors && dotnet watch run" ,
+    "build": "dotnet build && npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
     "webpack-dev": "webpack --env=dev",
     "webpack-production": "webpack --env=prod",
     "watch-webpack-dev": "webpack --env=dev --watch --color",
     "watch-webpack-production": "npm run build-production --watch --color",
-    "postinstall": "replace cmd.version=6.5.1.240 cmd.version=6.5.3 ./node_modules/@extjs/sencha-cmd/dist/sencha.cfg"
+    "postinstall": "replace cmd.version=6.5.1.240 cmd.version=6.5.3 ./node_modules/@extjs/sencha-cmd/dist/sencha.cfg && dotnet restore"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.1.1",

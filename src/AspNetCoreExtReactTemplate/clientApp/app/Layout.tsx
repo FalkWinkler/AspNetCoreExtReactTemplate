@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Container,TitleBar ,Panel, TextField , Button, Menu,MenuItem, Dialog,MessageBox } from '@extjs/reactor/modern';
+import { Image ,Container,TitleBar ,Panel, TextField , Button, Menu,MenuItem, Dialog,MessageBox } from '@extjs/reactor/modern';
 import { renderWhenReady } from '@extjs/reactor';
-
 class Layout extends React.Component {
 
     state = {
@@ -28,6 +27,7 @@ class Layout extends React.Component {
         return (
             <Container fullscreen layout="fit"> 
                 <TitleBar title="Identityservice" docked="top" >
+                   
                     <Button margin="10" docked="right" titel="Login" text="Login" handler={this.showDialog}  ></Button>
                 </TitleBar>
                 <Dialog                 
