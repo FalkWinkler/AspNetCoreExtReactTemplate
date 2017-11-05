@@ -39,7 +39,7 @@ Bei Sencha gibt es ein eigenes Produkt Ext-React welches eine eigene Lizenz hat.
 Die Javascript Komponenten werden mit webpack erstellt. Hier muss eine 'webpack.config.js' Konfiguration im Projekt liegen. In dieser Datei ist von sencha ein Erweiterung  ExtReactWebpackPlugin.
 
 - ExtReactWebpackPlugin Konfiguration mit SDK
-  ```js
+  ```javascript
   new ExtReactWebpackPlugin({
                   sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
                   toolkit: 'modern',
@@ -53,6 +53,10 @@ Die Javascript Komponenten werden mit webpack erstellt. Hier muss eine 'webpack.
 Die Property 'sdk' sagt das das Extjs Sdk verwendet wird und wo. Hierfür muss auf der Ebenene der webpack Konfigation ein Link zum Sdk erstellt werden, zum npm package mit dem Sdk sollte auch gehen.
 
 - Link zum Sdk erstellen
-```cmd
+```shell
   mklink ext /J d:\extjs-sdk
 ```
+
+## Dependency injection
+
+### [Implementing Angular's Dependency Injection in React. Understanding Element Injectors](http://blog.mgechev.com/2017/01/30/implementing-dependency-injection-react-angular-element-injectors)
