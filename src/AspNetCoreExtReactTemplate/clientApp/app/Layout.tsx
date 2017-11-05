@@ -1,8 +1,10 @@
 import * as React from 'react'
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { Image ,Container,TitleBar ,Panel, TextField , Button, Menu,MenuItem, Dialog,MessageBox } from '@extjs/reactor/modern';
 import { renderWhenReady } from '@extjs/reactor';
-class Layout extends React.Component {
-
+import { About } from './about/About';
+import Routes from './RoutePaths';
+class Layout extends React.Component<RouteComponentProps<any>, any> {
     state = {
         showDialog: false
     }
@@ -25,7 +27,8 @@ class Layout extends React.Component {
     render() {
         const { showDialog } = this.state;
         return (
-            <Container fullscreen layout="fit"> 
+            <Container fullscreen layout="fit">              
+                
                 <TitleBar title="Identityservice" docked="top" >
                    
                     <Button margin="10" docked="right" titel="Login" text="Login" handler={this.showDialog}  ></Button>
@@ -43,7 +46,9 @@ class Layout extends React.Component {
                 
                     <Button text="Cancel" handler={this.onCancel}/>
                     <Button itemId="ok" text="OK" handler={this.onOk}/>
-                </Dialog>
+                </Dialog> 
+                <Routes /> 
+                {this.props.children}
             </Container>           
         )
     }
