@@ -8,11 +8,12 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-hot-loader": "^3.1.1",
     "react-router-dom": "^4.1.1"
   },
   "scripts": {
     "clean": "rimraf build",
-    "start": "webpack-dev-server --progress --colors && dotnet watch run" ,
+    "start": "webpack-dev-server --progress --colors && dotnet watch run",
     "build": "dotnet build && npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
     "webpack-dev": "webpack --env=dev",
     "webpack-production": "webpack --env=prod",
@@ -32,17 +33,17 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.0",
     "html-webpack-plugin": "^2.24.1",
     "open-browser-webpack-plugin": "0.0.5",
     "portfinder": "^1.0.13",
-    "rimraf": "^2.6.1",
     "replace": "^0.3.0",
+    "rimraf": "^2.6.1",
     "static-server": "^2.0.5",
     "typescript": "^2.4.1",
     "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.1",
-    "clean-webpack-plugin": "^0.1.17",
-    "copy-webpack-plugin": "^4.0.1"
+    "webpack-dev-server": "^2.4.1"
   }
 }
